@@ -7,8 +7,8 @@ const path = require("path")
 
 const app = express()
 
-app.engine('.hbs', exphbs());
-app.set('view engine', '.hbs');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: false}))
@@ -30,7 +30,7 @@ app.post('/contact-us', function (req, res) {
     
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: `"${name} 👻" <${mail}>`, // sender address
+        from: `"${name}" <${mail}>`, // sender address
         to: "info@trisenboilservices.com", // list of receivers
         subject: `${subject}`, // Subject line
         text: `${message}`, // plain text body
