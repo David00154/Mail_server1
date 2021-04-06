@@ -38,7 +38,7 @@ app.post('/contact-us', function (req, res) {
       });
     
       console.log("Message sent: %s", info.messageId);
-    res.render('Success.handlebars', {title: "Mailed Successfully"})
+    res.render('Success', {title: "Mailed Successfully"})
 
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
     
@@ -49,7 +49,7 @@ app.post('/contact-us', function (req, res) {
     
     main().catch(e => {
         console.log(e)
-        res.render("Error.handlebars", {title: "Error Sending Mail"})
+        res.render("Error", {title: "Error Sending Mail"})
     });
 });
 
