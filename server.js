@@ -7,8 +7,8 @@ const path = require("path")
 
 let app = express()
 
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', exphbs());
+// app.set('view engine', 'handlebars');
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended: false}))
@@ -38,7 +38,36 @@ app.post('/contact-us', function (req, res) {
       });
     
       console.log("Message sent: %s", info.messageId);
-    res.render('Success', {title: "Mailed Successfully"})
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- CSS only -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+            <title>Mailed Successfully</title>
+        </head>
+        <body>
+            <div class="container mt-4">
+                <div class="alert alert-success" role="alert">
+        Message Sent Successfully
+        <br>
+            <button type="button" class="btn btn-success mt-4" id="back-btn">Back</button>
+        </div>
+
+        <script>
+            const back_btn = document.getElementById("back-btn");
+            back_btn.onclick = () => {
+                window.history.back(-1)
+            }
+        </script>
+            </div>
+        </body>
+
+        </html>
+    `)
 
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
     
@@ -49,7 +78,37 @@ app.post('/contact-us', function (req, res) {
     
     main().catch(e => {
         console.log(e)
-        res.render("Error", {title: "Error Sending Mail"})
+        res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- CSS only -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+            <title>Error Sending Mail</title>
+        </head>
+        <body>
+            <div class="container mt-4">
+            <div class="alert alert-danger" role="alert">
+            Message Error: Not Sent Successfully
+            <br>
+
+            <button type="button" class="btn btn-danger mt-4" id="back-btn">Back</button>
+        </div>
+        </div>
+
+        <script>
+            const back_btn = document.getElementById("back-btn");
+            back_btn.onclick = () => {
+                window.history.back(-1)
+            }
+        </script>
+        </body>
+
+        </html>
+    `)
     });
 });
 
