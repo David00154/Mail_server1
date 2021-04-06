@@ -15,7 +15,7 @@ app.use(bodyparser.urlencoded({extended: false}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/contact-us', function (req, res) {
+app.post('/contact-us', function (req, res) {
     const {name, mail, subject, message} = req.body
     async function main() {
     let transporter = nodemailer.createTransport({
