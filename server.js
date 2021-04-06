@@ -5,7 +5,7 @@ const bodyparser = require('body-parser');
 const path = require("path")
 
 
-const app = express()
+let app = express()
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -15,7 +15,7 @@ app.use(bodyparser.urlencoded({extended: false}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.post('/contact-us', function (req, res) {
+app.get('/contact-us', function (req, res) {
     const {name, mail, subject, message} = req.body
     async function main() {
     let transporter = nodemailer.createTransport({
