@@ -7,7 +7,7 @@ const path = require("path")
 
 const app = express()
 
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.engine('.hbs', exphbs());
 app.set('view engine', '.hbs');
 
 app.use(bodyparser.json())
@@ -38,7 +38,7 @@ app.post('/contact-us', function (req, res) {
       });
     
       console.log("Message sent: %s", info.messageId);
-    res.render('Success.hbs', {title: "Mailed Successfully"})
+    res.render('Success.handlebars', {title: "Mailed Successfully"})
 
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
     
@@ -49,7 +49,7 @@ app.post('/contact-us', function (req, res) {
     
     main().catch(e => {
         console.log(e)
-        res.render("Error.hbs", {title: "Error Sending Mail"})
+        res.render("Error.handlebars", {title: "Error Sending Mail"})
     });
 });
 
