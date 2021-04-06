@@ -1,0 +1,14 @@
+
+        <div class="alert alert-success" role="alert">
+        Message Sent Successfully
+        <br>
+            <button type="button" class="btn btn-success mt-4" id="back-btn">Back</button>
+        </div>
+
+        <script>
+            const back_btn = document.getElementById("back-btn");
+
+            back_btn.onclick = () => {
+                window.history.back(-1)
+            }
+        </script>

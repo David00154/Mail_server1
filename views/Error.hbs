@@ -1,0 +1,15 @@
+
+        <div class="alert alert-danger" role="alert">
+            Message Error: Not Sent Successfully
+            <br>
+
+            <button type="button" class="btn btn-danger mt-4" id="back-btn">Back</button>
+        </div>
+
+        <script>
+            const back_btn = document.getElementById("back-btn");
+
+            back_btn.onclick = () => {
+                window.history.back(-1)
+            }
+        </script>
